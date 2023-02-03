@@ -167,5 +167,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4721add178dbbbe4eba71ca2a7a1ecba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FirstSceneName: 0
-  Player: {fileID: 8550444052779724272, guid: 31b5d141bc67bdf48bc6322607fb7b86, type: 3}
+  FirstSceneName: 1

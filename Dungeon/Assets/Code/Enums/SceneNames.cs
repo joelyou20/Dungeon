@@ -8,6 +8,7 @@ namespace Assets.Code.Enums
 {
     public enum SceneNames
     {
+        StartupScene,
         RedRoom1,
         RedRoom2
     }
