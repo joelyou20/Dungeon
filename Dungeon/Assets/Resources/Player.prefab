@@ -12,10 +12,8 @@ GameObject:
   - component: {fileID: -7068698422158095139}
   - component: {fileID: 2325171521919918866}
   - component: {fileID: 3991154976477096830}
-  - component: {fileID: 3518620705444665859}
   - component: {fileID: 5539232958904163778}
   - component: {fileID: 2989088960590076076}
-  - component: {fileID: 6385180075904393462}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -141,19 +139,6 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &3518620705444665859
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8550444052779724272}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6e76b5e8dbda3734caef49083327802f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  movementSpeed: 5
 --- !u!60 &5539232958904163778
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -202,18 +187,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 3
---- !u!114 &6385180075904393462
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8550444052779724272}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1052185652076d249a5ee03078c598bd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  curHealth: 0
-  maxHealth: 100
-  healthBar: {fileID: 0}
