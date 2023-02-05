@@ -10,6 +10,7 @@ namespace Assets.Code.Enums
     {
         StartupScene,
         RedRoom1,
-        RedRoom2
+        RedRoom2,
+        GameOver
     }
 }

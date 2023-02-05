@@ -29,6 +29,6 @@ public class Health : MonoBehaviour
     {
         curHealth -= damage;
 
-        healthBar.SetHealth(curHealth);
+        healthBar.Set(curHealth);
     }
 }

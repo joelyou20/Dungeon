@@ -1,23 +1,30 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class HealthBar : MonoBehaviour
 {
-    private Health playerHealth;
-    private Slider healthBar;
+    private Slider _healthSlider;
+    private int? _health;
+    private TMP_Text _text;
 
     private void Start()
     {
-        playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<Health>();
-        healthBar = GetComponent<Slider>();
-        healthBar.maxValue = playerHealth.maxHealth;
-        healthBar.value = playerHealth.maxHealth;
+        _healthSlider = GetComponent<Slider>();
+        _text = GameObject.Find("text").GetComponent<TMP_Text>();
     }
 
-    public void SetHealth(int hp)
+    private void Update()
     {
-        healthBar.value = hp;
+        _healthSlider.value = _health.Value;
+        _text.text = _health.Value.ToString();
+    }
+
+
+    public void Set(int health)
+    {
+        _health = health;
     }
 }

@@ -12,7 +12,7 @@ namespace Assets.Code.Managers
 {
     public static class GameSceneManager
     {
-        private static List<string> _scenesVisited = new List<string>();
+        private static List<string> _scenesVisited = new();
 
         public static GameObject PlayerSpawn => GameObject.FindGameObjectWithTag(Enum.GetName(typeof(Tags), Tags.Respawn));
 
@@ -22,7 +22,7 @@ namespace Assets.Code.Managers
         //  (i.e. FolderName: "Red-Level", retrieve all scenes, randomly select next level or specifically select level from list.
         public static List<string> GetScenes()
         {
-            List<string> scenes = new List<string>();
+            List<string> scenes = new();
 
             for (int i = 0; i < SceneCount; i++)
             {
@@ -36,11 +36,11 @@ namespace Assets.Code.Managers
 
         public static string GetNextRandomScene()
         {
-            string[] scenes = GetScenes().Where(x => x != "StartupScene" && !_scenesVisited.Contains(x)).ToArray();
+            string[] scenes = GetScenes().Where(x => x != nameof(SceneNames.StartupScene) && !_scenesVisited.Contains(x)).ToArray();
 
             if (!scenes.Any()) HandleNoScenesRemaining();
 
-            Random random = new Random();
+            Random random = new();
             int index = random.Next(scenes.Count() - 1);
 
             return scenes[index];
@@ -52,7 +52,8 @@ namespace Assets.Code.Managers
         }
 
         public static void LoadNextRandomScene() => LoadScene(GetNextRandomScene());
-        public static void LoadScene(Scene scene) => LoadScene(scene.name);
+
+        public static void LoadScene(SceneNames sceneName) => LoadScene(Enum.GetName(typeof(SceneNames), sceneName));
 
         public static void LoadScene(string sceneName)
         {
