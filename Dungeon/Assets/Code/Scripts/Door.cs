@@ -7,11 +7,6 @@ using UnityEngine;
 
 public class Door : MonoBehaviour
 {
-    public Door()
-    {
-        var x = 1; 
-    }
-
     public Transform player;
 
     private BoxCollider2D _boxCollider2D;

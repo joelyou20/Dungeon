@@ -59,7 +59,6 @@ namespace Assets.Code.Managers
         {
             SceneManager.LoadScene(sceneName);
             _scenesVisited.Add(sceneName);
-            PlayerManager.SetPlayer();
         }
 
         public static void ResetScenesVisited() => _scenesVisited.Clear();

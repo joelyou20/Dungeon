@@ -9,6 +9,7 @@ namespace Assets.Code.Enums
     public enum Tags
     {
         Player,
+        Enemy,
         Respawn
     }
 }

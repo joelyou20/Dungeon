@@ -1,4 +1,5 @@
 ﻿using Assets.Code.Enums;
+using Assets.Code.Stats;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,21 +11,28 @@ namespace Assets.Code.Managers
 {
     public static class PlayerManager
     {
-        public static GameObject Player;
+        private static GameObject _player;
 
-        private static PlayerController _playerController;
-
-        public static void SetPlayer()
-        {
-            Player = GameObject.FindGameObjectWithTag(Enum.GetName(typeof(Tags), Tags.Player));
-            _playerController = Player.GetComponent<PlayerController>();
+        public static GameObject Player 
+        { 
+            get {
+                GameObject value = _player == null ? GameObject.FindGameObjectWithTag(Enum.GetName(typeof(Tags), Tags.Player)) : _player;
+                _player = value;
+                return value;
+            }
+            set => _player = value; 
         }
 
-        public static void DamagePlayer(int damage)
-        {
-            if (_playerController == null) return;
+        public static bool IsDead => PlayerStats.Health <= 0;
 
-            _playerController.SetHealth(_playerController.Health - damage);
+        public static void DamagePlayer(int damage) => PlayerStats.Health -= damage;
+
+        public static void InitializePlayer(int health, float speed, int attackSpeed)
+        {
+            PlayerStats.Health = health;
+            PlayerStats.MaxHealth = health;
+            PlayerStats.Speed = speed;
+            PlayerStats.AttackSpeed = attackSpeed;
         }
     }
 }

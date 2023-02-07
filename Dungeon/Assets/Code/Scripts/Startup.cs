@@ -9,8 +9,6 @@ public class Startup : MonoBehaviour
 {
     public SceneNames FirstSceneName;
 
-    private GameObject _player;
-
     void Start()
     {
         GameSceneManager.LoadScene(Enum.GetName(typeof(SceneNames), FirstSceneName));
