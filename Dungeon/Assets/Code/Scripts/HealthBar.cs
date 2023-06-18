@@ -14,17 +14,19 @@ public class HealthBar : MonoBehaviour
     {
         _healthSlider = GetComponent<Slider>();
         _text = GameObject.Find("text").GetComponent<TMP_Text>();
+        DontDestroyOnLoad(gameObject);
     }
 
     private void Update()
     {
+        if (_health == null) return;
         _healthSlider.value = _health.Value;
         _text.text = _health.Value.ToString();
     }
 
-
     public void Set(int health)
     {
         _health = health;
+        Update();
     }
 }

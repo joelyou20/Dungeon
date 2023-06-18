@@ -25,7 +25,12 @@ namespace Assets.Code.Managers
 
         public static bool IsDead => PlayerStats.Health <= 0;
 
-        public static void DamagePlayer(int damage) => PlayerStats.Health -= damage;
+        public static void DamagePlayer(int damage)
+        {
+            var health = PlayerStats.Health - damage;
+            Player.GetComponent<PlayerController>().SetHealth(health.Value);
+            PlayerStats.Health = health;
+        }
 
         public static void InitializePlayer(int health, float speed, int attackSpeed)
         {

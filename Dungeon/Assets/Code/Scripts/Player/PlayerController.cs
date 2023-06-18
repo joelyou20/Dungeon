@@ -5,6 +5,7 @@ using Assets.Code.Scripts.Combat.Contracts;
 using Assets.Code.Services;
 using Assets.Code.Services.Contracts;
 using Assets.Code.Stats;
+using Assets.Code.Utilities;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -13,12 +14,9 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    public static PlayerStats Stats { get; set; }
-
     [Header("Attributes")]
     public float Speed = 5;
     public const int MaxHealth = 100;
-    public HealthBar HealthBar;
     public int AttackSpeed = 3;
 
     [Header("Damage")]
@@ -26,6 +24,7 @@ public class PlayerController : MonoBehaviour
     public int flashRepeat = 3;
     public Color flashColor = Color.white;
 
+    private HealthBar _healthBar;
     private SpriteRenderer _spriteRenderer;
     private Color _originalColor;
     private IDamageEffectService _damageEffectService;
@@ -44,7 +43,8 @@ public class PlayerController : MonoBehaviour
     {
         if (!PlayerStats.IsInitialized) PlayerManager.InitializePlayer(MaxHealth, Speed, AttackSpeed);
 
-        HealthBar.Set(PlayerStats.Health.Value);
+        _healthBar = GameObject.Find(nameof(HealthBar)).GetComponent<HealthBar>();
+        _healthBar.Set(PlayerStats.Health.Value);
 
         _damageEffectService = new DamageEffectService();
         _playerInput = FindObjectOfType<PlayerInput>();
@@ -79,6 +79,13 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public static PlayerController Create(Vector3 position)
+    {
+        Transform transform = Instantiate(GameAssets.Ref.Player, position, Quaternion.identity);
+        PlayerController player = transform.GetComponent<PlayerController>();
+        return player;
+    }
+
     private IEnumerator InvokeAttack()
     {
         _isAttacking = true;
@@ -94,7 +101,7 @@ public class PlayerController : MonoBehaviour
         PlayerStats.Health = health;
 
         if (PlayerManager.IsDead) Die();
-        HealthBar.Set(health);
+        _healthBar.Set(health);
     }
 
     public void SetLeftMouseAttack(IAttack attack)
